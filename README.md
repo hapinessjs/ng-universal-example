@@ -1,27 +1,51 @@
-# NgUniversalExample
+<img src="http://bit.ly/2mxmKKI" width="500" alt="Hapiness" />
+<div>
+    <a href="https://www.typescriptlang.org/docs/tutorial.html">
+        <img src="https://cdn-images-1.medium.com/max/800/1*8lKzkDJVWuVbqumysxMRYw.png"
+             align="right" alt="Typescript logo" width="50" height="50" style="border:none;" />
+    </a>
+    <a href="http://reactivex.io/rxjs">
+        <img src="http://reactivex.io/assets/Rx_Logo_S.png"
+             align="right" alt="ReactiveX logo" width="50" height="50" style="border:none;" />
+    </a>
+    <a href="http://hapijs.com">
+        <img src="http://bit.ly/2lYPYPw"
+             align="right" alt="Hapijs logo" width="75" style="border:none;" />
+    </a>
+    <a href="https://www.angular.io">
+            <img src="https://angular.io/assets/images/logos/angular/angular.svg"
+                 align="right" alt="Angular logo" width="75" style="border:none; margin-top:-5px;" />
+        </a>
+</div>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0-rc.2.
+# NG-Universal & Anguar-CLI minimal starter
 
-## Development server
+> This demo is built following the [NG-Universal & Anguar-CLI guide](https://github.com/hapinessjs/ng-universal-module)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+<hr />
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+$ yarn install
+```
 
-## Build
+<hr />
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Development (Client-side only rendering)
 
-## Running unit tests
+run `yarn run start` which will start `ng serve` (project served at the standard: localhost:4200)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<hr />
 
-## Running end-to-end tests
+## Production
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+run `yarn run build:dynamic`. All of the files that need to be served will be found within the `/dist` folder.
 
-## Further help
+<hr />
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Testing Universal builds -Locally-
+
+`yarn run serve:dynamic`
+
+Compiles your application and spins up a `Hapiness` application to dynamically serve your `Universal` application on `http://localhost:4000`.
