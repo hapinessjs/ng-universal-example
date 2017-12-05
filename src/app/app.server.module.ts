@@ -4,6 +4,8 @@ import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader'
 
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
+import { ServerRequestService } from './shared/services/server-request.service';
+import { REQUEST_SERVICE } from './shared/services/tokens';
 
 @NgModule({
   imports: [
@@ -11,6 +13,9 @@ import { AppComponent } from './app.component';
     ServerModule,
     ModuleMapLoaderModule,
     ServerTransferStateModule
+  ],
+  providers: [
+    { provide: REQUEST_SERVICE, useClass: ServerRequestService }
   ],
   bootstrap: [AppComponent]
 })

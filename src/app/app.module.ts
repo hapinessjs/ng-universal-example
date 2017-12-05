@@ -8,6 +8,8 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { APP_ROUTES } from './app.routes';
+import { ClientRequestService } from './shared/services/client-request.service';
+import { REQUEST_SERVICE } from './shared/services/tokens';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { APP_ROUTES } from './app.routes';
     APP_ROUTES,
     MatCardModule,
   ],
-  providers: [],
+  providers: [
+    { provide: REQUEST_SERVICE, useClass: ClientRequestService }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
