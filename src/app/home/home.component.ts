@@ -1,7 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { ServerRequestService } from '../shared/services/server-request.service';
-import { REQUEST_SERVICE } from '../shared/services/tokens';
-import { ClientRequestService } from '../shared/services/client-request.service';
+import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../shared/services/http.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +7,17 @@ import { ClientRequestService } from '../shared/services/client-request.service'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  private _user: any;
 
-  constructor(@Inject(REQUEST_SERVICE) private _requestService: ServerRequestService | ClientRequestService) { }
+  constructor(private _httpService: HttpService) {
+    this._user = { name: {} };
+  }
 
   ngOnInit() {
-    this._requestService.log();
+    this._httpService.getRandomUser().subscribe(_ => this._user = _);
+  }
+
+  get user(): any {
+    return this._user;
   }
 }
