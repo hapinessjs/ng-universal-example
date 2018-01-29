@@ -3,7 +3,10 @@ import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
 
 import { enableProdMode } from '@angular/core';
-import { Hapiness, HapinessModule, HttpServerExt, HttpServerService, OnError, OnStart } from '@hapiness/core';
+import {
+  HapiConfig, Hapiness, HapinessModule, HttpServerExt, HttpServerService, OnError,
+  OnStart
+} from '@hapiness/core';
 import { NgUniversalModule } from '@hapiness/ng-universal';
 import { join } from 'path';
 
@@ -57,9 +60,7 @@ class HapinessApplication implements OnStart, OnError {
 }
 
 // Boostrap Hapiness application
+import { Config } from '@hapiness/config';
 Hapiness.bootstrap(HapinessApplication, [
-  HttpServerExt.setConfig({
-    host: '0.0.0.0',
-    port: 4000
-  })
+  HttpServerExt.setConfig((<any>Config.getData()).server as HapiConfig)
 ]);
