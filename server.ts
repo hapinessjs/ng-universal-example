@@ -8,6 +8,7 @@ import {
   OnStart
 } from '@hapiness/core';
 import { NgUniversalModule } from '@hapiness/ng-universal';
+import { Config } from '@hapiness/config';
 import { join } from 'path';
 
 const BROWSER_FOLDER = join(process.cwd(), 'dist', 'browser');
@@ -60,7 +61,6 @@ class HapinessApplication implements OnStart, OnError {
 }
 
 // Boostrap Hapiness application
-import { Config } from '@hapiness/config';
 Hapiness.bootstrap(HapinessApplication, [
   HttpServerExt.setConfig((<any>Config.getData()).server as HapiConfig)
 ]);
