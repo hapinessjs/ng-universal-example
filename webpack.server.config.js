@@ -10,9 +10,9 @@ module.exports = {
   externals: [
     /(node_modules|main\..*\.js)/,
     {
-      '@hapiness/config': {
-        commonjs: '@hapiness/config',
-        root: '@hapiness/config'
+      config: {
+        commonjs: 'config',
+        root: 'config'
       }
     }
   ],
