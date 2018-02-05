@@ -62,5 +62,5 @@ class HapinessApplication implements OnStart, OnError {
 
 // Boostrap Hapiness application
 Hapiness.bootstrap(HapinessApplication, [
-  HttpServerExt.setConfig((<any>Config.getData()).server as HapiConfig)
+  HttpServerExt.setConfig(Config.get('server') as HapiConfig)
 ]);
