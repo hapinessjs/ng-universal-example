@@ -19,7 +19,7 @@ import { HttpService } from './shared/services/http.service';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-universal-example' }),
-    TransferHttpCacheModule.enableOnProdMode(environment.production),
+    TransferHttpCacheModule.withConfig({ prodMode: environment.production }),
     HttpClientModule,
     APP_ROUTES,
     MatCardModule
