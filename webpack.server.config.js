@@ -1,24 +1,25 @@
 const path = require('path');
 const webpack = require('webpack');
-const config = require('config');
-const fs = require('fs-extra');
-
-fs.outputFileSync(path.resolve(__dirname, 'dist/config.json'), JSON.stringify(config));
 
 module.exports = {
   entry: { server: './server.ts' },
   resolve: {
-    alias: {
-      config: path.resolve(__dirname, 'dist/config.json')
-    },
     extensions: ['.ts', '.js']
   },
   target: 'node',
-  // this makes sure we include node_modules and other 3rd party libraries
-  externals: [/(node_modules|main\..*\.js)/],
+  externals: [
+    /(node_modules|main\..*\.js)/,
+    {
+      config: {
+        commonjs: 'config',
+        root: 'config'
+      }
+    }
+  ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
+    libraryTarget: "commonjs"
   },
   module: {
     rules: [
