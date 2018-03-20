@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map, tap } from 'rxjs/operators';
 
@@ -14,7 +14,7 @@ export class HttpService {
 
   getRandomUser(): Observable<any> {
     return this._httpClient
-      .get('https://randomuser.me/api/')
+      .get('https://randomuser.me/api/', { headers: new HttpHeaders({ 'x-key-client-url': 'http://my_custom_url_public' }) })
       .pipe(
         map((_: any) => _.results),
         map(_ => _[0]),

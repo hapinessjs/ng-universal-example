@@ -19,7 +19,10 @@ import { HttpService } from './shared/services/http.service';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-universal-example' }),
-    TransferHttpCacheModule.withConfig({ prodMode: environment.production }),
+    TransferHttpCacheModule.withConfig({
+      prodMode: environment.production,
+      headerNameToOverrideUrlInKeyCachingGeneration: 'x-key-client-url'
+    }),
     HttpClientModule,
     APP_ROUTES,
     MatCardModule
