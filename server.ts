@@ -9,7 +9,7 @@ import {
 } from '@hapiness/core';
 import { NgUniversalModule } from '@hapiness/ng-universal';
 import { Config } from '@hapiness/config';
-import { LoggerExt, LoggerService } from '@hapiness/logger';
+import { LoggerExt, LoggerModule, LoggerService } from '@hapiness/logger';
 import { join } from 'path';
 
 import * as bunyan from 'bunyan';
@@ -34,11 +34,11 @@ const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/mai
         indexFile: 'index.html',
         rootPath: BROWSER_FOLDER
       }
-    })
+    }),
+    LoggerModule
   ],
   providers: [
-    HttpServerService,
-    LoggerService
+    HttpServerService
   ]
 })
 class HapinessApplication implements OnStart, OnError {
