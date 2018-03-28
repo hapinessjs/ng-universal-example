@@ -9,7 +9,11 @@ import {
 } from '@hapiness/core';
 import { NgUniversalModule } from '@hapiness/ng-universal';
 import { Config } from '@hapiness/config';
+import { LoggerExt, LoggerService } from '@hapiness/logger';
 import { join } from 'path';
+
+import * as bunyan from 'bunyan';
+import { LoggerOptions } from 'bunyan';
 
 const BROWSER_FOLDER = join(process.cwd(), 'dist', 'browser');
 
@@ -33,7 +37,8 @@ const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/mai
     })
   ],
   providers: [
-    HttpServerService
+    HttpServerService,
+    LoggerService
   ]
 })
 class HapinessApplication implements OnStart, OnError {
@@ -42,25 +47,26 @@ class HapinessApplication implements OnStart, OnError {
    *
    * @param {HttpServerService} _httpServer DI for HttpServerService to provide .instance() method to give original Hapi.js server
    */
-  constructor(private _httpServer: HttpServerService) {
+  constructor(private _httpServer: HttpServerService, private _logger: LoggerService) {
   }
 
   /**
    * OnStart process
    */
   onStart(): void {
-    console.log(`Node server listening on ${this._httpServer.instance().info.uri}`);
+    this._logger.info(`Node server listening on ${this._httpServer.instance().info.uri}`);
   }
 
   /**
    * OnError process
    */
   onError(error: Error): void {
-    console.error(error);
+    this._logger.error(error);
   }
 }
 
 // Boostrap Hapiness application
 Hapiness.bootstrap(HapinessApplication, [
-  HttpServerExt.setConfig(Config.get('server') as HapiConfig)
+  HttpServerExt.setConfig(Config.get('server') as HapiConfig),
+  LoggerExt.setConfig({ logger: bunyan.createLogger(Config.get('logger') as LoggerOptions) })
 ]);
