@@ -10,6 +10,6 @@ export class ServerRequestService {
   }
 
   log(): void {
-    this._logger.info(this._request);
+    this._logger.info('URL =>', this._request.url);
   }
 }

@@ -4,29 +4,29 @@ import { LoggerService } from '@hapiness/logger';
 
 @Injectable()
 export class ServerLoggerService {
-  private _logger: LoggerService;
+  private readonly _logger: LoggerService;
 
   constructor() {
     this._logger = Hapiness['module'].di.get(LoggerService) as LoggerService;
   }
 
-  info(data: any) {
-    this._logger.info(data);
+  info(...args: any[]): void {
+    this._logger.info.call(this._logger, ...args);
   }
 
-  debug(data: any) {
-    this._logger.debug(data);
+  debug(...args: any[]): void {
+    this._logger.debug.call(this._logger, ...args);
   }
 
-  trace(data: any) {
-    this._logger.trace(data);
+  trace(...args: any[]): void {
+    this._logger.trace.call(this._logger, ...args);
   }
 
-  warn(data: any) {
-    this._logger.warn(data);
+  warn(...args: any[]): void {
+    this._logger.warn.call(this._logger, ...args);
   }
 
-  error(data: any) {
-    this._logger.error(data);
+  error(...args: any[]): void {
+    this._logger.error.call(this._logger, ...args);
   }
 }

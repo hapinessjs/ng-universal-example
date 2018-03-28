@@ -2,29 +2,29 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ClientLoggerService {
-  private _logger: Console;
+  private readonly _logger: Console;
 
   constructor() {
     this._logger = console;
   }
 
-  info(data: any) {
-    this._logger.info(data);
+  info(...args: any[]): void {
+    this._logger.info.call(this._logger, ...args);
   }
 
-  debug(data: any) {
-    this._logger.debug(data);
+  debug(...args: any[]): void {
+    this._logger.debug.call(this._logger, ...args);
   }
 
-  trace(data: any) {
-    this._logger.trace(data);
+  trace(...args: any[]): void {
+    this._logger.trace.call(this._logger, ...args);
   }
 
-  warn(data: any) {
-    this._logger.warn(data);
+  warn(...args: any[]): void {
+    this._logger.warn.call(this._logger, ...args);
   }
 
-  error(data: any) {
-    this._logger.error(data);
+  error(...args: any[]): void {
+    this._logger.error.call(this._logger, ...args);
   }
 }
