@@ -46,6 +46,7 @@ class HapinessApplication implements OnStart, OnError {
    * Class constructor
    *
    * @param {HttpServerService} _httpServer DI for HttpServerService to provide .instance() method to give original Hapi.js server
+   * @param {LoggerService} _logger DI for LoggerService to provide logger object
    */
   constructor(private _httpServer: HttpServerService, private _logger: LoggerService) {
   }
