@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:dynamic": "yarn run build:client-and-server-bundles && yarn run webpack:server",
-    "serve:dynamic": "node dist/server.js",
+    "serve:dynamic": "node dist/server.js | bunyan",
     "build:client-and-server-bundles": "ng build --prod && ng build --prod --app server --output-hashing=none",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
   },
