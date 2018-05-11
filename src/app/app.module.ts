@@ -15,26 +15,26 @@ import { HttpService } from './shared/services/http.service';
 import { ClientLoggerService } from './shared/services/client-logger.service';
 
 @NgModule({
-  declarations: [
-    AppComponent, HomeComponent
-  ],
-  imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-universal-example' }),
-    TransferHttpCacheModule.withConfig({
-      prodMode: environment.production,
-      headerNameToOverrideUrlInKeyCachingGeneration: 'x-key-client-url'
-    }),
-    HttpClientModule,
-    APP_ROUTES,
-    MatCardModule
-  ],
-  providers: [
-    { provide: REQUEST_SERVICE, useClass: ClientRequestService },
-    { provide: LOGGER_SERVICE, useClass: ClientLoggerService },
-    { provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true },
-    HttpService
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent, HomeComponent
+    ],
+    imports: [
+        BrowserModule.withServerTransition({ appId: 'ng-universal-example' }),
+        TransferHttpCacheModule.withConfig({
+            prodMode: environment.production,
+            headerNameToOverrideUrlInKeyCachingGeneration: 'x-key-client-url'
+        }),
+        HttpClientModule,
+        APP_ROUTES,
+        MatCardModule
+    ],
+    providers: [
+        { provide: REQUEST_SERVICE, useClass: ClientRequestService },
+        { provide: LOGGER_SERVICE, useClass: ClientLoggerService },
+        { provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true },
+        HttpService
+    ],
+    bootstrap: [ AppComponent ]
 })
 export class AppModule {
 }

@@ -9,17 +9,17 @@ import { REQUEST_SERVICE, LOGGER_SERVICE } from './shared/services/tokens';
 import { ServerLoggerService } from './shared/services/server-logger.service';
 
 @NgModule({
-  imports: [
-    AppModule,
-    ServerModule,
-    ModuleMapLoaderModule,
-    ServerTransferStateModule
-  ],
-  providers: [
-    { provide: REQUEST_SERVICE, useClass: ServerRequestService },
-    { provide: LOGGER_SERVICE, useClass: ServerLoggerService }
-  ],
-  bootstrap: [AppComponent]
+    imports: [
+        AppModule,
+        ServerModule,
+        ModuleMapLoaderModule,
+        ServerTransferStateModule
+    ],
+    providers: [
+        { provide: REQUEST_SERVICE, useClass: ServerRequestService },
+        { provide: LOGGER_SERVICE, useClass: ServerLoggerService }
+    ],
+    bootstrap: [ AppComponent ]
 })
 export class AppServerModule {
 }

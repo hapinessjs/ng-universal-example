@@ -1,13 +1,13 @@
 section {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 mat-card {
-  color: rgba(0,0,0,0.87);
-  background-color: white;
-  margin: auto 10px;
-  width: 360px;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: white;
+    margin: auto 10px;
+    width: 360px;
 }

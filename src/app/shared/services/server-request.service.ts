@@ -6,10 +6,10 @@ import { ServerLoggerService } from './server-logger.service';
 @Injectable()
 export class ServerRequestService {
 
-  constructor(@Inject(REQUEST) private _request: Request, @Inject(LOGGER_SERVICE) private _logger: ServerLoggerService) {
-  }
+    constructor(@Inject(REQUEST) private _request: Request, @Inject(LOGGER_SERVICE) private _logger: ServerLoggerService) {
+    }
 
-  log(): void {
-    this._logger.info('URL =>', this._request.url);
-  }
+    log(): void {
+        this._logger.info('URL =>', this._request.url);
+    }
 }
