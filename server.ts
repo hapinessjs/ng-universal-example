@@ -14,8 +14,7 @@ import { Config } from '@hapiness/config';
 import { LoggerExt, LoggerModule, LoggerService } from '@hapiness/logger';
 import { join } from 'path';
 
-import * as bunyan from 'bunyan';
-import { LoggerOptions } from 'bunyan';
+import { createLogger } from 'bunyan';
 
 const BROWSER_FOLDER = join(process.cwd(), 'dist', 'browser');
 
@@ -23,7 +22,7 @@ const BROWSER_FOLDER = join(process.cwd(), 'dist', 'browser');
 enableProdMode();
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main.bundle');
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
 
 // Create our Hapiness application
 @HapinessModule({
@@ -71,5 +70,5 @@ class HapinessApplication implements OnStart, OnError {
 // Boostrap Hapiness application
 Hapiness.bootstrap(HapinessApplication, [
     HttpServerExt.setConfig(Config.get('server') as HapiConfig),
-    LoggerExt.setConfig({ logger: bunyan.createLogger(Config.get('logger') as LoggerOptions) })
+    LoggerExt.setConfig({ logger: createLogger(Config.get('logger')) })
 ]);

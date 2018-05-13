@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { tap, filter } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 
 import { REQUEST_SERVICE } from '../services/tokens';
 import { ServerRequestService } from '../services/server-request.service';
