@@ -1,7 +1,7 @@
 // These are important and needed before anything else
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
-// * NOTE :: leave this until @hapiness/core will be migrated to rxjs v6
+// * NOTE :: leave this until @hapiness/core will be migrated to rxjs v6 - This library is automatically installed with `ng-universal`
 import 'rxjs-compat';
 
 import { enableProdMode } from '@angular/core';
