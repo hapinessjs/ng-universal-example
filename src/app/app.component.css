@@ -11,3 +11,7 @@ mat-card {
     margin: auto 10px;
     width: 360px;
 }
+
+.mat-card-title {
+    font-size: 20px;
+}
