@@ -9,14 +9,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MyHttpInterceptor } from './shared/interceptors/my-http.interceptor';
-import { ClientLoggerService } from './shared/services/client-logger.service';
+import { ClientReplyService } from './shared/services/client-reply.service';
 import { ClientRequestService } from './shared/services/client-request.service';
 import { HttpService } from './shared/services/http.service';
-import { LOGGER_SERVICE, REQUEST_SERVICE } from './shared/services/tokens';
+import { LoggerService } from './shared/services/logger.service';
+import { REPLY_SERVICE, REQUEST_SERVICE } from './shared/services/tokens';
+import { MyComponent } from './my/my.component';
+import { RedirectComponent } from './redirect/redirect.component';
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent
+        AppComponent, HomeComponent, MyComponent, RedirectComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-universal-example' }),
@@ -30,8 +33,9 @@ import { LOGGER_SERVICE, REQUEST_SERVICE } from './shared/services/tokens';
     ],
     providers: [
         { provide: REQUEST_SERVICE, useClass: ClientRequestService },
-        { provide: LOGGER_SERVICE, useClass: ClientLoggerService },
+        { provide: REPLY_SERVICE, useClass: ClientReplyService },
         { provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true },
+        LoggerService,
         HttpService
     ],
     bootstrap: [ AppComponent ]

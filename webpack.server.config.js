@@ -14,9 +14,19 @@ module.exports = {
     externals: [
         /(node_modules)/,
         {
+            // This is the only module you have to install with npm in your final packaging
+            // npm i config
             config: {
                 commonjs: 'config',
                 root: 'config'
+            },
+            // Temporary Fix for issue: https://github.com/ethanent/centra/pull/2
+            // to prevent unknown module when executing SSR
+            // You have to install it too like previous one until fix is merged
+            // npm i centra
+            centra: {
+                commonjs: 'centra',
+                root: 'centra'
             }
         }
     ],

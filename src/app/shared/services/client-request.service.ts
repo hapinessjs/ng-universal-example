@@ -1,11 +1,10 @@
-import { Inject, Injectable } from '@angular/core';
-import { LOGGER_SERVICE } from './tokens';
-import { ClientLoggerService } from './client-logger.service';
+import { Injectable } from '@angular/core';
+import { LoggerService } from './logger.service';
 
 @Injectable()
 export class ClientRequestService {
 
-    constructor(@Inject(LOGGER_SERVICE) private _logger: ClientLoggerService) {
+    constructor(private _logger: LoggerService) {
     }
 
     log(): void {

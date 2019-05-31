@@ -1,20 +1,13 @@
 // These are important and needed before anything else
-import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
-// * NOTE :: leave this until @hapiness/core will be migrated to rxjs v6 - This library is automatically installed with `ng-universal`
-import 'rxjs-compat';
+import 'zone.js/dist/zone-node';
 
 import { enableProdMode } from '@angular/core';
-import {
-    HapiConfig, Hapiness, HapinessModule, HttpServerExt, HttpServerService, OnError,
-    OnStart
-} from '@hapiness/core';
-import { NgUniversalModule } from '@hapiness/ng-universal';
 import { Config } from '@hapiness/config';
-import { LoggerExt, LoggerModule, LoggerService } from '@hapiness/logger';
+import { Hapiness, Module } from '@hapiness/core';
+import { HttpServer, HttpServerConfig } from '@hapiness/core/httpserver';
+import { NgUniversalModule } from '@hapiness/ng-universal';
 import { join } from 'path';
-
-import { createLogger } from 'bunyan';
 
 const BROWSER_FOLDER = join(process.cwd(), 'dist', 'browser');
 
@@ -25,7 +18,7 @@ enableProdMode();
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
 
 // Create our Hapiness application
-@HapinessModule({
+@Module({
     version: '1.0.0',
     imports: [
         NgUniversalModule.setConfig({
@@ -35,40 +28,27 @@ const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/mai
                 indexFile: 'index.html',
                 rootPath: BROWSER_FOLDER
             }
-        }),
-        LoggerModule
-    ],
-    providers: [
-        HttpServerService
+        })
     ]
 })
-class HapinessApplication implements OnStart, OnError {
-    /**
-     * Class constructor
-     *
-     * @param {HttpServerService} _httpServer DI for HttpServerService to provide .instance() method to give original Hapi.js server
-     * @param {LoggerService} _logger DI for LoggerService to provide logger object
-     */
-    constructor(private _httpServer: HttpServerService, private _logger: LoggerService) {
-    }
-
+class HapinessApplication {
     /**
      * OnStart process
      */
     onStart(): void {
-        this._logger.info(`Node server listening on ${this._httpServer.instance().info.uri}`);
+        console.log(`SSR application is running`);
     }
 
     /**
      * OnError process
      */
     onError(error: Error): void {
-        this._logger.error(error);
+        console.error(error);
     }
 }
 
+
 // Boostrap Hapiness application
 Hapiness.bootstrap(HapinessApplication, [
-    HttpServerExt.setConfig(Config.get('server') as HapiConfig),
-    LoggerExt.setConfig({ logger: createLogger(Config.get('logger')) })
+    HttpServer.setConfig<HttpServerConfig>(Config.get('server'))
 ]);

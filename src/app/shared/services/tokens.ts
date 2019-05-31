@@ -1,9 +1,8 @@
 import { InjectionToken } from '@angular/core';
-import { ServerRequestService } from './server-request.service';
+import { ClientReplyService } from './client-reply.service';
 import { ClientRequestService } from './client-request.service';
-import { ClientLoggerService } from './client-logger.service';
-import { ServerLoggerService } from './server-logger.service';
+import { ServerReplyService } from './server-reply.service';
+import { ServerRequestService } from './server-request.service';
 
 export const REQUEST_SERVICE = new InjectionToken<ServerRequestService | ClientRequestService>('REQUEST_SERVICE');
-
-export const LOGGER_SERVICE = new InjectionToken<ServerLoggerService | ClientLoggerService>('LOGGER_SERVICE');
+export const REPLY_SERVICE = new InjectionToken<ServerReplyService | ClientReplyService>('REPLY_SERVICE');

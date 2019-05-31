@@ -1,15 +1,14 @@
 import { Inject, Injectable } from '@angular/core';
-import { REQUEST, Request } from '@hapiness/ng-universal';
-import { LOGGER_SERVICE } from './tokens';
-import { ServerLoggerService } from './server-logger.service';
+import { HttpServerRequest, REQUEST } from '@hapiness/ng-universal';
+import { LoggerService } from './logger.service';
 
 @Injectable()
 export class ServerRequestService {
 
-    constructor(@Inject(REQUEST) private _request: Request, @Inject(LOGGER_SERVICE) private _logger: ServerLoggerService) {
+    constructor(@Inject(REQUEST) private _request: HttpServerRequest, private _logger: LoggerService) {
     }
 
     log(): void {
-        this._logger.info('URL =>', this._request.url);
+        this._logger.info('URL =>', this._request.raw.url);
     }
 }

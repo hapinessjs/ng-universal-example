@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { ServerModule, ServerTransferStateModule } from '@angular/platform-server';
 import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
+import { AppComponent } from './app.component';
 
 import { AppModule } from './app.module';
-import { AppComponent } from './app.component';
+import { ServerReplyService } from './shared/services/server-reply.service';
 import { ServerRequestService } from './shared/services/server-request.service';
-import { REQUEST_SERVICE, LOGGER_SERVICE } from './shared/services/tokens';
-import { ServerLoggerService } from './shared/services/server-logger.service';
+import { REPLY_SERVICE, REQUEST_SERVICE } from './shared/services/tokens';
 
 @NgModule({
     imports: [
@@ -17,7 +17,7 @@ import { ServerLoggerService } from './shared/services/server-logger.service';
     ],
     providers: [
         { provide: REQUEST_SERVICE, useClass: ServerRequestService },
-        { provide: LOGGER_SERVICE, useClass: ServerLoggerService }
+        { provide: REPLY_SERVICE, useClass: ServerReplyService }
     ],
     bootstrap: [ AppComponent ]
 })

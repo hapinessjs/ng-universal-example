@@ -1,10 +1,8 @@
-import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { ClientLoggerService } from './client-logger.service';
-import { ServerLoggerService } from './server-logger.service';
-import { LOGGER_SERVICE } from './tokens';
+import { LoggerService } from './logger.service';
 
 @Injectable()
 export class HttpService {
@@ -12,7 +10,7 @@ export class HttpService {
     /**
      * Service constructor
      */
-    constructor(private _httpClient: HttpClient, @Inject(LOGGER_SERVICE) private _logger: ClientLoggerService | ServerLoggerService) {
+    constructor(private _httpClient: HttpClient, private _logger: LoggerService) {
     }
 
     getRandomUser(): Observable<any> {
