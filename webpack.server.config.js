@@ -19,14 +19,6 @@ module.exports = {
             config: {
                 commonjs: 'config',
                 root: 'config'
-            },
-            // Temporary Fix for issue: https://github.com/ethanent/centra/pull/2
-            // to prevent unknown module when executing SSR
-            // You have to install it too like previous one until fix is merged
-            // npm i centra
-            centra: {
-                commonjs: 'centra',
-                root: 'centra'
             }
         }
     ],
