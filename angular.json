@@ -66,15 +66,17 @@
                     "options": {
                         "outputPath": "dist/server",
                         "main": "src/main.server.ts",
-                        "tsConfig": "tsconfig.server.json",
-                        "fileReplacements": [
-                            {
-                                "replace": "src/environments/environment.ts",
-                                "with": "src/environments/environment.prod.ts"
-                            }
-                        ],
-                        "optimization": true,
-                        "sourceMap": false
+                        "tsConfig": "tsconfig.server.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        }
                     }
                 },
                 "serve": {

@@ -1,21 +1,15 @@
-// These are important and needed before anything else
-import 'reflect-metadata';
+// This is important and needed before anything else
 import 'zone.js/dist/zone-node';
 
-import { enableProdMode } from '@angular/core';
 import { Config } from '@hapiness/config';
 import { Hapiness, Module } from '@hapiness/core';
 import { HttpServer, HttpServerConfig } from '@hapiness/core/httpserver';
-import { NgUniversalModule } from '@hapiness/ng-universal';
 import { join } from 'path';
 
 const BROWSER_FOLDER = join(process.cwd(), 'dist', 'browser');
 
-// Faster server renders w/ Prod mode (dev mode never needed)
-enableProdMode();
-
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP, NgUniversalModule} = require('./dist/server/main');
 
 // Create our Hapiness application
 @Module({

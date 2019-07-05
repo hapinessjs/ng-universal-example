@@ -12,7 +12,6 @@ module.exports = {
         minimize: false
     },
     externals: [
-        /(node_modules)/,
         {
             // This is the only module you have to install with npm in your final packaging
             // npm i config
@@ -28,6 +27,7 @@ module.exports = {
         libraryTarget: "commonjs"
     },
     module: {
+        noParse: /polyfills-.*\.js/,
         rules: [
             { test: /\.ts$/, loader: 'ts-loader' },
             {
@@ -47,12 +47,7 @@ module.exports = {
             {} // a map of your routes
         ),
         new webpack.ContextReplacementPlugin(
-            /(.+)?hapiness(\\|\/)core(.+)?/,
-            path.join(__dirname, 'src'),
-            {}
-        ),
-        new webpack.ContextReplacementPlugin(
-            /(.+)?hapiness(\\|\/)ng-universal(.+)?/,
+            /(.+)?hapiness(\\|\/)(.+)?/,
             path.join(__dirname, 'src'),
             {}
         )
